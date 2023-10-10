@@ -1,0 +1,41 @@
+* {
+    border: 0px;
+    margin: 0px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(255, 250, 244, 0.94);
+}
+
+#content {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+#header {
+    background-color: rgb(184, 255, 237);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+input, button {
+    padding: 5px;
+}
+
+#forecast-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    grid-column: 1 / 4;
+    grid-row: 3;
+}

@@ -8,14 +8,21 @@
     <title>My Weather App</title>
 </head>
 <body>
-    <form class="location-input-form">
-        <input type="text" id="location-input" placeholder="Enter Location Here" />
-        <button type="button" id="submit-location">Submit</button>
-    </form>
-    <div id="forecast-container">
-        <div id="day1" class="forecast"></div>
-        <div id="day2" class="forecast"></div>
-        <div id="day3" class="forecast"></div>
+    <header id="header">
+        <h1>Weather</h1>
+        <form class="location-input-form">
+            <input type="text" id="location-input" placeholder="Enter Location Here" />
+            <button type="button" id="submit-location">Submit</button>
+        </form>
+    </header>
+    <div id="content">
+        <div id="current-weather-container">
+        </div>
+        <div id="forecast-container">
+            <div id="day1" class="forecast"></div>
+            <div id="day2" class="forecast"></div>
+            <div id="day3" class="forecast"></div>
+        </div>
     </div>
 </body>
 </html>
