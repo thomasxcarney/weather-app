@@ -1,6 +1,7 @@
 * {
     border: 0px;
     margin: 0px;
+    --drop-shadow: 2px 2px 5px rgba(0, 0, 0, 0.431);
 }
 
 body {
@@ -10,10 +11,12 @@ body {
 
 #content {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
+    width: 100%;
+    text-align: center;
 }
 
 #header {
@@ -24,10 +27,23 @@ body {
     align-items: center;
     padding: 10px;
     margin-bottom: 20px;
+    box-shadow: var(--drop-shadow);
 }
 
 input, button {
     padding: 5px;
+    box-shadow: var(--drop-shadow);
+    border-radius: 5px;
+}
+
+#location-container {
+    grid-column: 1 / 4;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: var(--drop-shadow);
+}
+
+#current-weather-container {
+    grid-row: 2;
 }
 
 #forecast-container {
@@ -37,5 +53,5 @@ input, button {
     justify-items: center;
     align-items: center;
     grid-column: 1 / 4;
-    grid-row: 3;
+    grid-row: 4;
 }

@@ -10,6 +10,7 @@ const getLocationValue = function addSubmitEventListener() {
     let location = locationInput.value;
     getForecast(location);
     getCurrentWeather(location);
+    printLocation();
     })
 };
 
@@ -41,10 +42,32 @@ const printCurrentWeather = function printCurrentWeatherToContainer(obj, contain
     icon.src = obj.condition.icon;
     const condition = document.createElement('p');
     condition.innerHTML = obj.condition.text;
+    const temp = document.createElement('p');
+    temp.innerHTML = obj.temp_f + '&deg;F';
+    container.append(current, icon, condition, temp);
+};
+
+const printCurrentWeatherDetails = function printCurrentWeatherDetailsToContainer(obj) {
+    const detailsContainer = document.getElementById('current-weather-details');
+    detailsContainer.innerHTML = '';
     const feelsLikeF = document.createElement('p');
     feelsLikeF.innerHTML = 'Feels like ' + obj.feelslike_f + '&deg;F';
-    container.append(current, icon, condition, feelsLikeF);
-};
+    const humidity = document.createElement('p');
+    humidity.innerHTML = 'Humidity ' + obj.humidity + '%';
+    const windSpeed = document.createElement('p');
+    windSpeed.innerHTML = 'Wind speed ' + obj.wind_mph + 'mph';
+    const windDir = document.createElement('p');
+    windDir.innerHTML = 'Wind direction ' + obj.wind_dir;
+    detailsContainer.append(feelsLikeF, humidity, windSpeed, windDir);
+}
+
+const printLocation = function printLocationToPage(location) {
+    const locationContainer = document.getElementById('location-container');
+    locationContainer.innerHTML = '';
+    const text = document.createElement('h1');
+    text.innerHTML = location;
+    locationContainer.appendChild(text);
+}
 
 async function getForecast(location) {
     let url = 'https://api.weatherapi.com/v1/forecast.json?key=6828a402ccd64fe9a2f182325230410&days=3&q=' + String(location);
@@ -52,7 +75,6 @@ async function getForecast(location) {
     const weather = await response.json();
     const forecastByDay = weather.forecast.forecastday;
     let forecastArr = processForecastDate(forecastByDay);
-    console.log(forecastArr);
     printForecast(forecastArr[0], day1ForecastContainer);
     printForecast(forecastArr[1], day2ForecastContainer);
     printForecast(forecastArr[2], day3ForecastContainer);
@@ -62,6 +84,10 @@ async function getCurrentWeather(location) {
     let url = 'https://api.weatherapi.com/v1/current.json?key=6828a402ccd64fe9a2f182325230410&q=' + String(location);
     const response = await fetch(url, {mode: 'cors'});
     const realTime = await response.json();
+    let locationName = realTime.location.name;
     const weather = realTime.current;
+    console.log(weather)
+    printLocation(locationName);
     printCurrentWeather(weather, currentWeatherContainer);
+    printCurrentWeatherDetails(weather)
 }
