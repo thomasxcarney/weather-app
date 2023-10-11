@@ -6,13 +6,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
     <title>My Weather App</title>
 </head>
 <body>
     <header id="header">
-        <h1>Weather</h1>
+        <div class="title">
+            <i class="fa fa-sun-o" aria-hidden="true"></i>
+            <h1>Weather</h1>
+        </div>
         <form class="location-input-form">
             <input type="text" id="location-input" placeholder="Enter Location Here" />
             <button type="button" id="submit-location">Submit</button>
@@ -20,7 +24,7 @@
     </header>
     <div id="content">
         <div id="location-container"></div>
-        <div id="current-weather-container"></div>
+        <div id="current-weather-container" class="forecast"></div>
         <div id="current-weather-details"></div>
         <div id="forecast-container">
             <div id="day1" class="forecast"></div>

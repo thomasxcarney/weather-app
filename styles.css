@@ -1,7 +1,7 @@
 * {
     border: 0px;
     margin: 0px;
-    --drop-shadow: 2px 2px 5px rgba(0, 0, 0, 0.431);
+    --drop-shadow: 2px 2px 5px rgba(0, 0, 0, 0.324);
 }
 
 body {
@@ -30,6 +30,16 @@ body {
     box-shadow: var(--drop-shadow);
 }
 
+.title {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title > i {
+    font-size: 2rem;
+}
+
 input, button {
     padding: 5px;
     box-shadow: var(--drop-shadow);
@@ -40,6 +50,10 @@ input, button {
     grid-column: 1 / 4;
     font-family: 'Montserrat', sans-serif;
     text-shadow: var(--drop-shadow);
+}
+
+#location-container > * {
+    font-size: 3rem;
 }
 
 #current-weather-container {
@@ -54,4 +68,13 @@ input, button {
     align-items: center;
     grid-column: 1 / 4;
     grid-row: 4;
+}
+
+.forecast {
+    border: 2px solid rgba(0, 0, 0, 0.363);
+    border-radius: 5px;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    box-shadow: var(--drop-shadow);
 }

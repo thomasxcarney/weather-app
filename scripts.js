@@ -10,16 +10,21 @@ const getLocationValue = function addSubmitEventListener() {
     let location = locationInput.value;
     getForecast(location);
     getCurrentWeather(location);
-    printLocation();
     })
 };
 
+const setInitialLocation = function setInitialLocation(location) {
+    getForecast(location);
+    getCurrentWeather(location);
+};
+
+setInitialLocation('Brooklyn');
 getLocationValue();
 
 const processForecastDate = function processForecastDataArrWithMap(arr) {
     const newArr = arr.map(({date, day}) => ({date, day}));
     return newArr;
-}
+};
 
 const printForecast = function printForecastInfoToContainer(obj, container) {
     container.innerHTML = '';
@@ -30,7 +35,7 @@ const printForecast = function printForecastInfoToContainer(obj, container) {
     const condition = document.createElement('p');
     condition.innerHTML = obj.day.condition.text;
     const avgTempF = document.createElement('p');
-    avgTempF.innerHTML = 'Average Temp. ' + obj.day.avgtemp_f + '&deg;F';
+    avgTempF.innerHTML = 'Avg. Temp. ' + obj.day.avgtemp_f + '&deg;F';
     container.append(date, icon, condition, avgTempF);
 };
 
@@ -90,4 +95,4 @@ async function getCurrentWeather(location) {
     printLocation(locationName);
     printCurrentWeather(weather, currentWeatherContainer);
     printCurrentWeatherDetails(weather)
-}
+};
