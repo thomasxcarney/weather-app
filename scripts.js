@@ -5,11 +5,23 @@ const day2ForecastContainer = document.getElementById('day2');
 const day3ForecastContainer = document.getElementById('day3');
 const currentWeatherContainer = document.getElementById('current-weather-container');
 
+const showLoading = function showLoadingScreen() {
+    let loadingContainer = document.createElement('div');
+    loadingContainer.classList.add('loading');
+    loadingContainer.innerHTML = 'loading';
+    let content = document.getElementById('content');
+    content.appendChild(loadingContainer);
+}
+
+const hideLoading = function hideLoadingScreen() {
+    let loadingContainer = document.querySelector('.loading');
+    loadingContainer.remove();
+};
+
 const getLocationValue = function addSubmitEventListener() {
     locationSubmit.addEventListener('click', event => {
     let location = locationInput.value;
-    getForecast(location);
-    getCurrentWeather(location);
+    getWeather(location);
     })
 };
 
@@ -76,6 +88,7 @@ const printLocation = function printLocationToPage(location) {
 
 async function getForecast(location) {
     let url = 'https://api.weatherapi.com/v1/forecast.json?key=6828a402ccd64fe9a2f182325230410&days=3&q=' + String(location);
+    showLoading();
     const response = await fetch(url, {mode: 'cors'});
     const weather = await response.json();
     const forecastByDay = weather.forecast.forecastday;
@@ -89,10 +102,16 @@ async function getCurrentWeather(location) {
     let url = 'https://api.weatherapi.com/v1/current.json?key=6828a402ccd64fe9a2f182325230410&q=' + String(location);
     const response = await fetch(url, {mode: 'cors'});
     const realTime = await response.json();
+    hideLoading();
     let locationName = realTime.location.name;
     const weather = realTime.current;
     console.log(weather)
     printLocation(locationName);
     printCurrentWeather(weather, currentWeatherContainer);
     printCurrentWeatherDetails(weather)
+};
+
+const getWeather = function getWeather(location){
+    getForecast(location);
+    getCurrentWeather(location);
 };
